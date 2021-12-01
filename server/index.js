@@ -34,11 +34,6 @@ app.all(
 
 
 let port = process.env.PORT || 3000;
-
-
-
-
-
 Gun({
   web: app.listen(port, () => { console.log(`Gun listening on ${port}/gun`)})})
 

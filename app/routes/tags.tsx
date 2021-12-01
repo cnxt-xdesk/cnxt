@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { ActionFunction, LoaderFunction, Outlet, useLoaderData } from "remix";
 import { Form, json, useActionData, redirect } from "remix";
-import { gun, tags } from "../../lib/gun";
+import { tags } from "../../lib/gun";
 
 
  ;
@@ -13,26 +13,15 @@ export function meta() {
 // - https://remix.run/api/conventions#action
 // - https://remix.run/guides/data-updates
 export let action: ActionFunction = async ({ request }) => {
-  let formData = await request.formData();
-  let answer = {
-    name: formData.get("name"),
-    data: formData.get("data"),
-    pub: formData.get("pub"),
-    priv: formData.get("priv"),
-  };
+  let form = await request.formData();
+  
+tags.put({
+  name: form.get("name"),
+  url: form.get("data"),
+});
 
 
-const _answer = tags.put(answer)
-
-// console.log(_answer)
-
-  if (typeof answer.name !== "string") {
-    return json("Come on, at least try!", { status: 400 });
-  }
-
-return tags.map().on((a: any) => {
-    json(_answer)
-  });
+return redirect('/tags/mint');
 
 }
  export default function ActionsDemo() {
@@ -70,30 +59,18 @@ return tags.map().on((a: any) => {
             <div>Tag Data:</div>
             <input ref={answerRef} name="data" type="text" />
           </label>
-
-          <label>
-            <div>
-              Public Key:<small> FOR AUTHENTICATION DEBUG</small>
-            </div>
-            <input ref={answerRef} name="pub" type="text" />
-          </label>
-          <label>
-            <div>
-              Public Key:<small> FOR AUTHENTICATION DEBUG</small>
-            </div>
-            <input ref={answerRef} name="priv" type="text" />
-          </label>
           <div>
             <button>Secret Key:</button>
           </div>
         </Form>
       </main>
       <aside>
-        {actionMessage ? (
+        <Outlet/>
+        {/* {actionMessage ? (
           <p>
             <b>{actionMessage}</b>
           </p>
-        ) : null}
+        ) : null} */}
       </aside>
     </div>
   );
