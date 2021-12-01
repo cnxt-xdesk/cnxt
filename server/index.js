@@ -8,7 +8,7 @@ const MODE = process.env.NODE_ENV;
 const BUILD_DIR = path.join(process.cwd(), "server/build");
 
 const Gun = require('gun');
-const SEA = require('gun/sea');
+
 
 let app = express();
 app.use(compression());
@@ -32,29 +32,19 @@ app.all(
       }
 );
 
-const peers = process.env.PEERS
 
 let port = process.env.PORT || 3000;
-const server = app.listen(port, () => {
-  console.log(`Express server listening on port ${port}`);
-});
 
-const {pub, priv, epub, epriv} = SEA.pair().then((pair) => {
-  console.log(
-    '\nAdd this to .dotenv file:'
-  );
-  console.log(`PUBLIC_KEY=${JSON.stringify(pair.pub)}`);
-  console.log(`PRIVATE_KEY=${JSON.stringify(pair.priv)}`);
-  console.log(`EPUBLIC_KEY=${JSON.stringify(pair.epub)}`);
-  console.log(`EPRIVATE_KEY=${JSON.stringify(pair.epriv)}`);
-  // Return these to return them to the env with an fs call
-  return [pair.pub, pair.priv , pair.epub, pair.epriv]
-});
 
-Gun({ web: server })
 
+
+
+Gun({
+  web: app.listen(port, () => { console.log(`Gun listening on ${port}/gun`)})})
 
 // create profile space under the public key
+
+
 
 ////////////////////////////////////////////////////////////////////////////////
 function purgeRequireCache() {

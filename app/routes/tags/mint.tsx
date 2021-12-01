@@ -6,9 +6,9 @@ type TagData = {
   
 }
 
-const loader: LoaderFunction({param}: TagData) {
+// const loader: LoaderFunction({param}: TagData) {
 
-}
+// }
 
 export default function Tags() {
 
