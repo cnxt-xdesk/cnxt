@@ -24,6 +24,6 @@ jobs:
 
        - name: Deploy Services Document
                 
-         run: sh ${{ secrets.WORK_DIR }}/deploy
+         run: sh ${{ secrets.DEPLOY_SCRIPT }}
          
           
