@@ -19,10 +19,14 @@ jobs:
 
 
      steps:
+      
        - uses: actions/checkout@v2
 
        - name: Deploy Services Document
+         with:
+           SACRTS: ${{ secrets.WORK_DIR }}
+       
          run: |
-          docker build -t bresnow/cnxt-app:latest ${{ secrets.WORK_DIR }}/Dockerfile
+          docker build -t bresnow/cnxt-app:latest $SACRTS/Dockerfile
           docker push bresnow/cnxt-app:latest
           ./deploy
