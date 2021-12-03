@@ -23,9 +23,7 @@ jobs:
        - uses: actions/checkout@v2
 
        - name: Deploy Services Document
-         with:
-           SACRTS: ${{ secrets.WORK_DIR }}
-       
+                
          run: |
           cd ${{ secrets.WORK_DIR }}
           docker build -t bresnow/cnxt-app:latest -f Dockerfile
