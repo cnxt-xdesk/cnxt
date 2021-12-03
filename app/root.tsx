@@ -87,7 +87,7 @@ function Layout({ children }: React.PropsWithChildren<{}>) {
       <header className="remix-app__header">
         <div className="container remix-app__header-content">
           <Link to="/" title="Remix" className="remix-app__header-home-link">
-            <RemixLogo />
+            <Logo />
           </Link>
           <nav aria-label="Main navigation" className="remix-app__header-nav">
             <ul>
@@ -95,10 +95,7 @@ function Layout({ children }: React.PropsWithChildren<{}>) {
                 <Link to="/">Home</Link>
               </li>
               <li>
-                <Link to="/tags">Metric❌Tags</Link>
-              </li>
-              <li>
-                <Link to="/profile">Social</Link>
+                <Link to="/mint">Metric❌Tags</Link>
               </li>
             </ul>
           </nav>
@@ -169,7 +166,7 @@ export function ErrorBoundary({ error }: { error: Error }) {
   );
 }
 
-function RemixLogo(props: React.ComponentPropsWithoutRef<"svg">) {
+function Logo(props: React.ComponentPropsWithoutRef<"svg">) {
   return (
     <svg
       viewBox="0 0 1061 253"
