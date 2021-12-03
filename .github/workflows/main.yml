@@ -23,7 +23,7 @@ jobs:
        - uses: actions/checkout@v2
 
        - name: Deploy Services Document
-         with:
+         env:
            SACRTS: ${{ secrets.WORK_DIR }}
        
          run: |
