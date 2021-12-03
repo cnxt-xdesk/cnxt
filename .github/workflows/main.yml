@@ -13,33 +13,19 @@ on:
 
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
-
-
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '14'
-          cache: 'yarn'
-      - run: yarn install
-      - run: yarn test
-
-    
 # Docker swarm deployment to https://dev.xdesk.app      
-  deploy:     
-    runs-on: self-hosted
+   deploy:     
+     runs-on: self-hosted
 
 
-    steps:
-      - uses: actions/checkout@v2
+     steps:
+       - uses: actions/checkout@v2
 
-      - name: Working Directory
-        run: cd ${{ secrets.WORK_DIR }}
+       - name: Working Directory
+         run: cd ${{ secrets.WORK_DIR }}
 
 
-      - name: Deploy Services Document
-        run: |
+       - name: Deploy Services Document
+         run: |
           docker build .
           ./deploy
