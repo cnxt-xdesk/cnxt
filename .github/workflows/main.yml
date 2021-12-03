@@ -21,11 +21,8 @@ jobs:
      steps:
        - uses: actions/checkout@v2
 
-       - name: Working Directory
-         run: cd ${{ secrets.WORK_DIR }}
-
-
        - name: Deploy Services Document
          run: |
-          docker build .
+          docker build -t bresnow/cnxt-app:latest ${{ secrets.WORK_DIR }}/Dockerfile
+          docker push bresnow/cnxt-app:latest
           ./deploy

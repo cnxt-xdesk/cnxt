@@ -1,0 +1,6 @@
+.github
+node_modules
+/.cache
+/server/build
+/public/build
+.env
