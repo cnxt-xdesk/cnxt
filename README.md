@@ -33,8 +33,16 @@ npm start
 ```
 ## Notes for Pardo
 
-[x] server, routes and app client are built in one package
-[x] data writes to database
-[ ] routes are complete
+- [x] server, databases (plural), routes and app client are built in one package
+- [x] data writes to database
+
+### TODO: Complete MVP by December 10th
+
+- ledger routes
+- document/ services attachment to dynamic namespaces
+  - yaml markup to html parser (fun)   
+- namespace searching and categories 
+- styling
+
 
 
