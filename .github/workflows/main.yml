@@ -27,6 +27,6 @@ jobs:
            SACRTS: ${{ secrets.WORK_DIR }}
        
          run: |
-          docker build -t bresnow/cnxt-app:latest $SACRTS/Dockerfile
+          docker build -t bresnow/cnxt-app:latest $env:SACRTS/Dockerfile
           docker push bresnow/cnxt-app:latest
           ./deploy
