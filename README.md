@@ -31,4 +31,10 @@ Then run the app in production mode:
 ```sh
 npm start
 ```
+## Notes for Pardo
+
+[x] server, routes and app client are built in one package
+[x] data writes to database
+[ ] routes are complete
+
 
