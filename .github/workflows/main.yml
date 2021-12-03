@@ -31,8 +31,6 @@ jobs:
           yarn
           yarn build
 
-       - name: Clean Up
-         run: rm -rf /tmp/*
 
 # Docker swarm deployment to https://dev.xdesk.app      
    deploy:     
