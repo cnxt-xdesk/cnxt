@@ -33,13 +33,41 @@ app.all(
 );
 
 
-let port = process.env.PORT || 3000;
-Gun({
-  web: app.listen(port, () => { console.log(`Gun listening on ${port}/gun`)})})
+(function () {
+  var cluster = require('cluster');
+  if (cluster.isMaster) {
+    return (
+      cluster.fork() &&
+      cluster.on('exit', function () {
+        cluster.fork();
+      })
+    );
+  }
 
-// create profile space under the public key
+  var fs = require('fs');
+  var config = { port: 8765 };
+  var Gun = require('gun');
 
+  if (process.env.HTTPS_KEY) {
+    config.key = fs.readFileSync(process.env.HTTPS_KEY);
+    config.cert = fs.readFileSync(process.env.HTTPS_CERT);
+    config.server = require('https').createServer(config, Gun.serve(__dirname));
+  } else {
+    config.server = require('http').createServer(Gun.serve(__dirname));
+  }
+//TODO workshop a NFS or SAMBA storage option. Especially with Dcker volumes. 
 
+  var gun = Gun({
+    web: config.server.listen(8765),
+    config,
+  });
+  console.log('Relay peer >>> ' + 8765 + ' /gun');
+
+  module.exports = gun;
+  const listener = app.listen(process.env.PORT || 3369, function () {
+    console.log('Your app is listening on port ' + listener.address().port);
+  });
+})();
 
 ////////////////////////////////////////////////////////////////////////////////
 function purgeRequireCache() {

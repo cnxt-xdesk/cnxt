@@ -1,0 +1,111 @@
+
+button.back {
+  padding: 20px;
+}
+
+button.back {
+  padding: 20px;
+  cursor: pointer;
+}
+
+button.new-list {
+  cursor: pointer;
+  position: relative;
+  width: calc(100% - 60px);
+  font-size: 32px;
+  font-weight: 200;
+  text-align: center;
+  color: #0400d7;
+  margin: 0;
+  padding: 20px 0;
+  -webkit-text-rendering: optimizeLegibility;
+  -moz-text-rendering: optimizeLegibility;
+  text-rendering: optimizeLegibility;
+  border-bottom: 1px solid;
+  margin: 0 30px;
+}
+
+small {
+  color: #f5f5f9;
+  font-size: 12px;
+}
+
+button {
+  cursor: pointer;
+}
+
+.profile {
+  padding: 5px 10px;
+  padding-bottom: 20px;
+}
+
+.profile pre {
+  width: '100%';
+}
+
+.tag_x-list-detail {
+  border-top: 1px solid transparent;
+  margin: 0;
+}
+
+.tag_x-list-detail h1 {
+  top: 0;
+  position: relative;
+}
+
+.tag_x-list li a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.tag_x-list li i {
+  cursor: pointer;
+}
+
+.tag_x-list li .archive {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 10px;
+  bottom: 0;
+  width: 40px;
+  height: 40px;
+  margin: auto 0;
+  font-size: 30px;
+  color: #ae0c00;
+  margin-bottom: 11px;
+  transition: color 0.2s ease-out;
+}
+
+.tag_x-list li:hover .archive {
+  display: block;
+}
+
+.lists li label {
+  text-align: center;
+  padding: 15px;
+  cursor: pointer;
+}
+
+.share-box {
+  border-top: 1px solid #ae0c00;
+  margin-top: 0;
+  padding: 20px 20px 20px 15px;
+}
+
+.new-tag_x.link {
+  padding: 20px;
+  font-size: 18px;
+  color: #0400d7;
+}
+
+.copy-btn {
+  margin: 20px auto 0px auto;
+  display: block;
+}
+
+a i {
+  margin-left: 15px;
+  margin-top: 15px;
+  color: #ae0c00;
+}

@@ -11,10 +11,11 @@ import {
   useLocation,
 } from "remix";
 import type { LinksFunction } from "remix";
-
+import styles from './tailwind.css';
 import deleteMeRemixStyles from "~/styles/demos/remix.css";
 import globalStylesUrl from "~/styles/global.css";
 import darkStylesUrl from "~/styles/dark.css";
+import tagStyles from "~/styles/cnxt/tags.css";
 
 /**
  * The `links` export is a function that returns an array of objects that map to
@@ -26,13 +27,15 @@ import darkStylesUrl from "~/styles/dark.css";
  */
 export let links: LinksFunction = () => {
   return [
-    { rel: "stylesheet", href: globalStylesUrl },
+    { rel: 'stylesheet', href: globalStylesUrl },
+    { rel: 'stylesheet', href: tagStyles },
     {
-      rel: "stylesheet",
+      rel: 'stylesheet',
       href: darkStylesUrl,
-      media: "(prefers-color-scheme: dark)",
+      media: '(prefers-color-scheme: dark)',
     },
-    { rel: "stylesheet", href: deleteMeRemixStyles },
+    { rel: 'stylesheet', href: deleteMeRemixStyles },
+    { rel: 'stylesheet', href: styles },
   ];
 };
 
@@ -45,7 +48,7 @@ export default function App() {
   return (
     <Document>
       <Layout>
-        <Outlet />
+          <Outlet /> 
       </Layout>
     </Document>
   );
@@ -95,7 +98,7 @@ function Layout({ children }: React.PropsWithChildren<{}>) {
                 <Link to="/tags">Metric❌Tags</Link>
               </li>
               <li>
-                <Link to="/social">Social</Link>
+                <Link to="/profile">Social</Link>
               </li>
             </ul>
           </nav>
@@ -106,7 +109,7 @@ function Layout({ children }: React.PropsWithChildren<{}>) {
       </div>
       <footer className="remix-app__footer">
         <div className="container remix-app__footer-content">
-          <p>&copy; CN❌T | THE❌DESK</p>
+          <p className='font-medium'>&copy; CN❌T | THE❌DESK</p>
         </div>
       </footer>
     </div>
@@ -158,8 +161,7 @@ export function ErrorBoundary({ error }: { error: Error }) {
           <p>{error.message}</p>
           <hr />
           <p>
-            Hey, developer, you should replace this with what you want your
-            users to see.
+            TODO: FIX BUG IN CODE
           </p>
         </div>
       </Layout>
