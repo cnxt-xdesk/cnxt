@@ -26,6 +26,4 @@ jobs:
                 
          run: |
           cd ${{ secrets.WORK_DIR }}
-          docker build -t bresnow/cnxt-app:latest .
-          docker push bresnow/cnxt-app:latest
           ./deploy
