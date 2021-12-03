@@ -13,6 +13,27 @@ on:
 
 
 jobs:
+   build:     
+     runs-on: self-hosted
+
+
+     steps:
+      
+       - uses: actions/checkout@v2
+
+       - name: Clone Repository      
+         run: |
+          git clone https://github.com/bresnow/cnxt.git /tmp/cnxt
+          cd /tmp/cnxt
+
+       - name: Yarn      
+         run: |
+          yarn
+          yarn build
+
+       - name: Clean Up
+         run: rm -rf /tmp/*
+
 # Docker swarm deployment to https://dev.xdesk.app      
    deploy:     
      runs-on: self-hosted
@@ -22,8 +43,7 @@ jobs:
       
        - uses: actions/checkout@v2
 
-       - name: Deploy Services Document
-                
+       - name: Deploy Services Document      
          run: sh ${{ secrets.DEPLOY_SCRIPT }}
          
           
