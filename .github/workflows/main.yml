@@ -4,44 +4,38 @@ name: CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
-
+    branches: [main]
 
   workflow_dispatch:
 
-
 jobs:
-   build:     
-     runs-on: self-hosted
+  build:
+    runs-on: self-hosted
 
+    steps:
+      - uses: actions/checkout@v2
 
-     steps:
-      
-       - uses: actions/checkout@v2
+      - name: Clone Repository
+        run: |
+          git clone https://github.com/bresnow/cnxt.git home/bresnow/tmp/cnxt
+          cd /home/bresnow/tmp/cnxt
 
-       - name: Clone Repository      
-         run: |
-          git clone https://github.com/bresnow/cnxt.git /tmp/cnxt
-          cd /tmp/cnxt
-
-       - name: Yarn      
-         run: |
+      - name: Yarn
+        run: |
           yarn
           yarn build
 
+      - name: Clean Up
+        run: rm -rf /home/bresnow/tmp/cnxt
 
-# Docker swarm deployment to https://dev.xdesk.app      
-   deploy:     
-     runs-on: self-hosted
+  # Docker swarm deployment to https://dev.xdesk.app
+  deploy:
+    runs-on: self-hosted
 
+    steps:
+      - uses: actions/checkout@v2
 
-     steps:
-      
-       - uses: actions/checkout@v2
-
-       - name: Deploy Services Document      
-         run: sh ${{ secrets.DEPLOY_SCRIPT }}
-         
-          
+      - name: Deploy Services Document
+        run: sh ${{ secrets.DEPLOY_SCRIPT }}
