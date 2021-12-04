@@ -1,8 +1,6 @@
-<<<<<<< HEAD
-import Gun from 'gun';
-import { json, LoaderFunction } from 'remix';
-import { gun } from '~/utils/db/gun';
-import { today } from '~/utils/dates';
+import { LoaderFunction } from 'remix';
+import { gun, state } from '~/utils/db/gun';
+import IconButton from '../../components/ui/icon_buttons';
 interface KeyPair {
   pub: String;
   priv: String;
@@ -31,30 +29,24 @@ interface Services {
   name: String;
   id: String;
 }
-export function IconButton() {
-  return (
-    <button
-      id="instagram"
-      className="  hover:border-2 border-pink-500 bg-gradient-to-b text-2xl hover:from-indigo-600 hover:via-pink-600 hover:to-yellow-500 hover:text-white bg-white text-pink-600 w-12 h-12  transform hover:-translate-y-3 rounded-full duration-500"
-    >
-      <i className="fas fa-hashtag "></i>
-    </button>
-  );
-=======
-import { useCatch, Link, json, useLoaderData, Outlet } from 'remix';
-import TimeLine from './index/timeline';
-
-export function meta() {
-  return { title: '❌ CNXT' };
->>>>>>> 622f4171518550e01eb4f1bb3e097befa51533f5
-}
+let token = gun.get('tokens/v1').get('token')
+export let loader: LoaderFunction = async ({params}:TokenData) => {
+  let data: TokenData = {
+      name: token.once((data: string) => {
+          JSON.stringify(data);
+      }),
+      tag_hash: keyof, KeyPair, ['pub']: ,
+      description: String,
+      mint_date: String,
+      display_name: String
+  };
+};
 
 export default function TimeLine() {
   return (
-<<<<<<< HEAD
     <div>
       <h1 className="text-3xl text-center font-bold text-blue-500">
-        Style Test
+        Current Namespaces
       </h1>
       <div className="border-l-2 mt-10">
         {/* <!-- Card 1 --> */}
@@ -145,13 +137,6 @@ export default function TimeLine() {
         </div>
       </div>
       <aside></aside>
-=======
-    <div className="remix__page">
-      <main>
-        <TimeLine />
-      </main>
-      {/*  */}
->>>>>>> 622f4171518550e01eb4f1bb3e097befa51533f5
     </div>
   );
 }
