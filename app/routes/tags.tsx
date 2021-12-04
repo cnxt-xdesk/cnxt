@@ -26,13 +26,12 @@ export let loader: LoaderFunction = async ({ request }) => {
   let minted = gun.get('tags').get(`${form.get('name')}`);
   minted.put(mintData);
 
-  return form.get('name')
+  return form.get('name');
 };
 /** TODO: */
 
 export default function Posts() {
   let param = useLoaderData<string>();
-
 
   // This form works without JavaScript, but when we have JavaScript we can make
   // the experience better by selecting the input on wrong answers! Go ahead, disable
@@ -92,10 +91,11 @@ export default function Posts() {
       <aside>
         {param ? (
           <Link to={`${param}`}>
-            <p>View token data for: </p><b>{param}</b>
+            <p>View token data for: </p>
+            <b>{param}</b>
           </Link>
         ) : null}
-
+        <Outlet />
       </aside>
     </div>
   );
