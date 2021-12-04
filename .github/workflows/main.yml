@@ -19,7 +19,7 @@ jobs:
 
       - name: Clone Repository
         run: |
-          git clone https://github.com/bresnow/cnxt.git home/bresnow/tmp/cnxt
+          git clone https://github.com/bresnow/cnxt.git /home/bresnow/tmp/cnxt
           cd /home/bresnow/tmp/cnxt
 
       - name: Yarn

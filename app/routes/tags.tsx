@@ -24,7 +24,7 @@ export let loader: LoaderFunction = async ({ request }) => {
 
   /* load the data */
 
-  return form.get('name');
+  return redirect(`/tags/${form.get('name')}`);
 };
 /** TODO: */
 
