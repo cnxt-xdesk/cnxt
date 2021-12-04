@@ -14,7 +14,7 @@ import { gun } from '~/utils/db/gun';
 
 export let loader: LoaderFunction = async ({ request }) => {
   let form = await request.formData();
-
+  let token = gun.get('tokens/v1').get('token');
   /* The mint data to load into the ledger */
   let mintData = {
     creator: form.get('creator'),
@@ -23,8 +23,6 @@ export let loader: LoaderFunction = async ({ request }) => {
   };
 
   /* load the data */
-  let minted = gun.get('tags').get(`${form.get('name')}`);
-  minted.put(mintData);
 
   return form.get('name');
 };

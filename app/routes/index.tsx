@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import Gun from 'gun';
 import { json, LoaderFunction } from 'remix';
 import { gun } from '~/utils/db/gun';
@@ -40,21 +39,13 @@ export function IconButton() {
       <i className="fas fa-hashtag "></i>
     </button>
   );
-=======
-import { useCatch, Link, json, useLoaderData, Outlet } from 'remix';
-import TimeLine from './index/timeline';
-
-export function meta() {
-  return { title: '❌ CNXT' };
->>>>>>> 622f4171518550e01eb4f1bb3e097befa51533f5
 }
 
 export default function TimeLine() {
   return (
-<<<<<<< HEAD
     <div>
       <h1 className="text-3xl text-center font-bold text-blue-500">
-        Style Test
+        Current Namespaces
       </h1>
       <div className="border-l-2 mt-10">
         {/* <!-- Card 1 --> */}
@@ -145,13 +136,6 @@ export default function TimeLine() {
         </div>
       </div>
       <aside></aside>
-=======
-    <div className="remix__page">
-      <main>
-        <TimeLine />
-      </main>
-      {/*  */}
->>>>>>> 622f4171518550e01eb4f1bb3e097befa51533f5
     </div>
   );
 }
