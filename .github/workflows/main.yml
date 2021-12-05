@@ -39,7 +39,7 @@ jobs:
       - name: Build Docker Image & Deploy Services Document
         run: |
          cd ${{ secrets.WORK_DIR }}
-         docker build -t ghcr.io/bresnow/cnxt-app:latest.
+         docker build -t ghcr.io/bresnow/cnxt-app:latest .
          docker push ghcr.io/bresnow/cnxt-app:latest
          sh ${{secrets.DEPLOY_SCRIPT}}
          
