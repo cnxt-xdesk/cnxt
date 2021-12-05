@@ -26,7 +26,7 @@ export let loader: LoaderFunction = () => {
                                                    epriv: ${data.epriv}`))
     const encryptedUsername = await SEA.encrypt(username, pair)
     var hash = await SEA.sign(enc, pair);
-   return hash
+   return json(hash)
   };
   let data: IndexData = {
     resources: [
