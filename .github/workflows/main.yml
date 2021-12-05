@@ -19,16 +19,15 @@ jobs:
 
       - name: Clone Repository
         run: |
-          git clone https://github.com/bresnow/cnxt.git /home/bresnow/tmp/cnxt
-          cd /home/bresnow/tmp/cnxt
+          git clone https://github.com/bresnow/cnxt.git ${{ secrets.WORK_DIR }}/app
+          cd ${{ secrets.WORK_DIR }}/app
 
       - name: Yarn
         run: |
           yarn
           yarn build
 
-      - name: Clean Up
-        run: rm -rf /home/bresnow/tmp/cnxt
+  
 
   # Docker swarm deployment to https://dev.xdesk.app
   deploy:
@@ -37,5 +36,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Deploy Services Document
-        run: sh ${{ secrets.DEPLOY_SCRIPT }}
+      - name: Build Docker Image & Deploy Services Document
+        run: |
+         cd ${{ secrets.WORK_DIR }}
+         docker build -t ghcr.io/bresnow/cnxt-app:latest.
+         docker push ghcr.io/bresnow/cnxt-app:latest
+         sh ${{secrets.DEPLOY_SCRIPT}}
+         
+      - name: Clean Up
+        run: rm -rf ${{ secrets.WORK_DIR }}/app
