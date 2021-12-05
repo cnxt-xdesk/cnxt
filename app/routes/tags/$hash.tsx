@@ -3,34 +3,7 @@ import type { LoaderFunction, MetaFunction } from 'remix';
 
 import { gun } from '~/utils/db/gun';
 import { today } from '~/utils/dates';
-// interface KeyPair {
-//   pub: String;
-//   priv: String;
-//   epub: String;
-//   epriv: String;
-// }
-// interface User {
-//   name: String;
-//   id: keyof KeyPair;
-//   profile: ProfileData;
-// }
 
-// interface ProfileData {
-//   url: String;
-// }
-
-// interface TokenData {
-//   name: String;
-//   tag_hash: keyof KeyPair['pub'];
-//   description: String;
-//   mint_date: String;
-//   display_name: String;
-// }
-
-// interface Services {
-//   name: String;
-//   id: String;
-// }
 export function IconButton() {
   return (
     <button

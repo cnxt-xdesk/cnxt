@@ -12,23 +12,15 @@ import {
 } from 'remix';
 import { gun } from '~/utils/db/gun';
 
-export let loader: LoaderFunction = async ({ request }) => {
-  let form = await request.formData();
-  let token = gun.get('tokens/v1').get('token');
-  /* The mint data to load into the ledger */
-  let mintData = {
-    creator: form.get('creator'),
-    url: form.get('url'),
-    metadata: form.get('meta'),
-  };
 
-  /* load the data */
 
-  return redirect(`/tags/${form.get('name')}`);
-};
-/** TODO: */
+export let action: ActionFunction = async() => {
 
-export default function Posts() {
+
+}
+
+
+export default function MintTransaction() {
   let param = useLoaderData<string>();
 
   // This form works without JavaScript, but when we have JavaScript we can make
