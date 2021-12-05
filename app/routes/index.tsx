@@ -15,19 +15,11 @@ type IndexData = {
 interface LoadUser {
   (username: string): void
 }
+const demoTags = gun.get('tags/demo/v1')
 
 export let loader: LoaderFunction = () => {
-  let loadUserTagData: LoadUser = async(username:string) => {
-    const demoTags = gun.get('tags/demo/v1')
-  // The hash recipe draft
-    var pair = await SEA.pair(data => console.log(`public Key: ${data.pub} \n
-                                                   private Key: ${data.priv} \n
-                                                   epub: ${data.epub} \n
-                                                   epriv: ${data.epriv}`))
-    const encryptedUsername = await SEA.encrypt(username, pair)
-    var hash = await SEA.sign(enc, pair);
-   return json(hash)
-  };
+
+  
   let data: IndexData = {
     resources: [
       {
@@ -46,7 +38,7 @@ export let loader: LoaderFunction = () => {
     demos: [
       {
         to: "demos/actions",
-        name: loadUserTagData('demo')
+        name: 'yooooo'
       },
       {
         to: "demos/about",
@@ -83,8 +75,21 @@ export function IconButton() {
   );
 }
 
+export let loadUserTagData: LoadUser = async(username:string) => {
+    
+  // The hash recipe draft
+    var pair = await SEA.pair(data => console.log(`public Key: ${data.pub} \n
+                                                   private Key: ${data.priv} \n
+                                                   epub: ${data.epub} \n
+                                                   epriv: ${data.epriv}`))
+    const encryptedUsername = await SEA.encrypt(username, pair)
+    var hash = await SEA.sign(enc, pair);
+   return json(hash)
+};
+
 export default function TimeLine() {
   let data = useLoaderData<IndexData>();
+  let demoUser = loadUserTagData('demo')
   return (
     <div>
       <main>
@@ -120,7 +125,7 @@ export default function TimeLine() {
                   {/* <!-- Content that showing in the box --> */}
                   <div className="flex-auto">
                     <Link to={demo.to} prefetch="intent">
-                      <h1 className="text-lg">{demo.name}</h1>
+                      <h1 className="text-lg">{demoUser}</h1>
                     </Link>
                     <h1 className="text-xl font-bold">
                       {demo.name}
