@@ -27,21 +27,14 @@ jobs:
           yarn
           yarn build
 
-  
-
-  # Docker swarm deployment to https://dev.xdesk.app
-  deploy:
-    runs-on: self-hosted
-
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Build Docker Image & Deploy Services Document
+      - name: Build Docker Image & Push to Github Registry
         run: |
          cd ${{ secrets.WORK_DIR }}
          docker build -t ghcr.io/bresnow/cnxt-app:latest .
          docker push ghcr.io/bresnow/cnxt-app:latest
-         sh ${{secrets.DEPLOY_SCRIPT}}
+
+      - name: Deploy Docker Swarm Script
+        run: sh ${{secrets.DEPLOY_SCRIPT}}
          
       - name: Clean Up
         run: rm -rf ${{ secrets.WORK_DIR }}/app
