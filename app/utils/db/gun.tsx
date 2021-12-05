@@ -1,4 +1,5 @@
 import Gun from 'gun';
+import 'gun/sea';
 import 'gun/lib/radix';
 import 'gun/lib/radisk';
 import 'gun/lib/store';
@@ -6,8 +7,8 @@ import 'gun/lib/rindexed';
 
 var gun = Gun(['http://localhost:8765/gun']);
 var state = Gun({ localStorage: true, radisk: false });
-// const Gun = require('gun')
-const sea = Gun.SEA;
+
+const SEA = Gun.SEA;
 
 type State = {};
 
@@ -31,4 +32,4 @@ const addUser = (user: string, passwd: string) => {
   });
 };
 
-export { gun, state, addUser };
+export { gun, SEA, state, addUser };

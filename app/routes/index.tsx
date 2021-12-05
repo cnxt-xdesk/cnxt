@@ -5,17 +5,29 @@ import { today } from '~/utils/dates';
 
 import type { MetaFunction, LoaderFunction } from "remix";
 import { useLoaderData, json, Link } from "remix";
+import { SEA } from '../utils/db/gun';
 
 type IndexData = {
   resources: Array<{ name: string; url: string }>;
   demos: Array<{ name: string; to: string }>;
 };
 
-// Loaders provide data to components and are only ever called on the server, so
-// you can connect to a database or run any server side code you want right next
-// to the component that renders it.
-// https://remix.run/api/conventions#loader
+interface LoadUser {
+  (username: string): void
+}
+
 export let loader: LoaderFunction = () => {
+  let loadUserTagData: LoadUser = async(username:string) => {
+    const demoTags = gun.get('tags/demo/v1')
+  // The hash recipe draft
+    var pair = await SEA.pair(data => console.log(`public Key: ${data.pub} \n
+                                                   private Key: ${data.priv} \n
+                                                   epub: ${data.epub} \n
+                                                   epriv: ${data.epriv}`))
+    const encryptedUsername = await SEA.encrypt(username, pair)
+    var hash = await SEA.sign(enc, pair);
+   return hash
+  };
   let data: IndexData = {
     resources: [
       {
@@ -34,7 +46,7 @@ export let loader: LoaderFunction = () => {
     demos: [
       {
         to: "demos/actions",
-        name: "Actions"
+        name: loadUserTagData('demo')
       },
       {
         to: "demos/about",
